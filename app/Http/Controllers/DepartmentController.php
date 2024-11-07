@@ -12,7 +12,7 @@ class DepartmentController extends Controller
         $department = Department::all();
         return view('department', [
             'title' => 'Department',
-            'department' => $department->load('students')
+            'department' => $department
         ]);
     }
 
