@@ -19,7 +19,7 @@
                         <tr class="border-t">
                             <td class="py-2">{{ $user->id }}</td>
                             <td class="py-2">{{ $user->Nama }}</td>
-                            <td class="py-2">{{ $user->Department->Name }}</td>
+                            <td class="py-2">{{ $user->Grade->Department->Name }}</td>
                             <td class="py-2">{{ $user->Grade->Name }}</td>
                             <td class="py-2">{{ $user->Email }}</td>
                             <td class="py-2">{{ $user->Alamat }}</td>

@@ -6,8 +6,8 @@
                 <thead>
                     <tr>
                         <th class="py-2 px-3 text-left text-sm font-semibold text-gray-900">No</th>
-                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-900">Grade Nama</th>
-                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-900">DEpartment Nama</th>
+                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-900">Grade Name</th>
+                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-900">Department Name</th>
                         <th class="py-2 px-4 text-left text-sm font-semibold text-gray-900">Student List</th>
                     </tr>
                 </thead>

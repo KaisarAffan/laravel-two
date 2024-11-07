@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->String('Nama');
             $table->integer('grade_id');
-            $table->integer('department_id');
             $table->String('Email')->unique();
             $table->text('Alamat');
             $table->timestamps();
