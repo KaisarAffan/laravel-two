@@ -11,7 +11,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with(['Grade','Department'])->get();
+        $students = Student::with(['Grade', 'Department'])->get();
         return view('student', [
             'title' => 'Student',
             'students' => $students,

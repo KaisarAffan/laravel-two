@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DashboardDepartmentController;
+use App\Http\Controllers\DashboardGradeController;
+use App\Http\Controllers\DashboardStudentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentController;
@@ -17,3 +21,8 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/student', [StudentController::class, 'index']);
 Route::get('/grade', [GradeController::class, 'index']);
 Route::get('/department', [DepartmentController::class, 'index']);
+Route::get('/dashboard', [dashboardController::class, 'index']);
+
+Route::get('/dashboard-student', [DashboardStudentController::class, 'index']);
+Route::get('/dashboard-grade', [DashboardGradeController::class, 'index']);
+Route::get('/dashboard-department', [DashboardDepartmentController::class, 'index']);
