@@ -12,7 +12,7 @@ class DashboardGradeController extends Controller
         $grades = Grade::all();
         return view('dashboard-grade', [
             'title' => 'Grade',
-            'grade' => $grades->load('students')
+            'grade' => $grades->load('students', 'department')
         ]);
     }
 }

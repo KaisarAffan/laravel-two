@@ -52,16 +52,13 @@
                 </button>
                 <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="/dashboard-student"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Student</a>
+                        <x-dashboard-nav-link href="/dashboard-student">Student</x-nav-link>
                     </li>
                     <li>
-                        <a href="/dashboard-grade"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Grade</a>
+                        <x-dashboard-nav-link href="/dashboard-grade">Grade</x-nav-link>
                     </li>
                     <li>
-                        <a href="/dashboard-department"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Department</a>
+                        <x-dashboard-nav-link href="/dashboard-department">Department</x-nav-link>
                     </li>
                 </ul>
             </li>

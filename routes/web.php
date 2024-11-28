@@ -23,6 +23,8 @@ Route::get('/grade', [GradeController::class, 'index']);
 Route::get('/department', [DepartmentController::class, 'index']);
 Route::get('/dashboard', [dashboardController::class, 'index']);
 
-Route::get('/dashboard-student', [DashboardStudentController::class, 'index']);
+Route::get('/dashboard-student', [DashboardStudentController::class, 'index'])->name('dashboard-student');
 Route::get('/dashboard-grade', [DashboardGradeController::class, 'index']);
 Route::get('/dashboard-department', [DashboardDepartmentController::class, 'index']);
+
+Route::post('/studentsShow', [DashboardStudentController::class, 'store'])->name('students.store');

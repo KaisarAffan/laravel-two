@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class student extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['Nama', 'grade_id', 'Email', 'Alamat'];
     protected $with = ['grade'];
     public function Grade(): BelongsTo
     {
