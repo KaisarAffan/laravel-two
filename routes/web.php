@@ -11,17 +11,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/student', [StudentController::class, 'index']);
 Route::get('/grade', [GradeController::class, 'index']);
 Route::get('/department', [DepartmentController::class, 'index']);
-Route::get('/dashboard', [dashboardController::class, 'index']);
+Route::get('/', [dashboardController::class, 'index']);
 
 Route::get('/dashboard-student', [DashboardStudentController::class, 'index'])->name('dashboard-student');
 Route::get('/dashboard-grade', [DashboardGradeController::class, 'index']);

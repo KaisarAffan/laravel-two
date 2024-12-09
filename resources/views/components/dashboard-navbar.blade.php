@@ -20,8 +20,9 @@
                 <span class="sr-only">Toggle sidebar</span>
             </button>
             <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
-                <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                <img src="https://images.seeklogo.com/logo-png/44/1/dragon-ball-goku-logo-png_seeklogo-444783.png?v=638686983750000000"
+                    class="mr-3 h-14" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Under Light</span>
             </a>
             <form action="#" method="GET" class="hidden md:block md:pl-2">
                 <label for="topbar-search" class="sr-only">Search</label>
