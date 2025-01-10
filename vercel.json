@@ -1,18 +1,15 @@
 {
     "version": 2,
     "builds": [{
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-            "distDir": "dist"
+            "src": "public/**/*",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "api/index.php",
+            "use": "@vercel/php"
         }
-    }],
-    "env": {
-        "NODE_VERSION": "18.x"
-    },
-    "framework": "vite",
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "/index.html"
-    }]
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "api/index.php" }
+    ]
 }

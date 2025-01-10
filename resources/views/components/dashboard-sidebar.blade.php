@@ -52,13 +52,13 @@
                 </button>
                 <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                     <li>
-                        <x-dashboard-nav-link href="/dashboard-student">Student</x-nav-link>
+                        <x-dashboard-nav-link href="/admin/students/">Student</x-nav-link>
                     </li>
                     <li>
-                        <x-dashboard-nav-link href="/dashboard-grade">Grade</x-nav-link>
+                        <x-dashboard-nav-link href="/admin/grades/">Grade</x-nav-link>
                     </li>
                     <li>
-                        <x-dashboard-nav-link href="/dashboard-department">Department</x-nav-link>
+                        <x-dashboard-nav-link href="/admin/departments/">Department</x-nav-link>
                     </li>
                 </ul>
             </li>

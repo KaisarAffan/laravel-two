@@ -8,7 +8,7 @@
     @endif
 
     <div class="flex justify-between items-center mb-4">
-        <form method="GET" action="{{ route('dashboard-student') }}" class="relative">
+        <form method="GET" action="{{ route('admin.students.store') }}" class="relative">
             <input type="text" name="search" placeholder="Search by Name or Grade..."
                 class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
                 value="{{ request('search') }}">
