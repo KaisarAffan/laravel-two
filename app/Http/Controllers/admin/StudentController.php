@@ -36,7 +36,7 @@ class StudentController extends Controller
     public function create()
     {
         $grades = Grade::all();
-        return view('students.create', compact('grades'));
+        return view('admin.student.add', compact('grades'));
     }
 
     /**
@@ -45,15 +45,42 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         Student::create($request->validated());
-        return redirect()->route('admin.student.index')->with('success', 'Student added successfully!');
+        return redirect()->route('admin.students.index')->with('success', 'Student added successfully!');
+    }
+
+    public function edit(string $id)
+    {
+        $student = Student::findOrFail($id); // Find the student or fail if not found
+        $grades = Grade::all(); // Fetch all grades for the dropdown
+        return view('admin.students.edit', compact('student', 'grades'));
+    }
+    public function update(Request $request, string $id)
+    {
+        $student = Student::findOrFail($id);
+        $validatedData = $request->validate([
+            'Nama' => 'required|string|max:255',
+            'grade_id' => 'required|exists:grades,id',
+            'Email' => 'required|email|max:255|unique:students,Email,' . $id,
+            'Phone' => 'required|string|unique:students,Phone,' . $id,
+            'Alamat' => 'nullable|string|max:255',
+        ]);
+        \Log::info('Before update: ', $student->toArray());
+        $student->update($validatedData);
+        \Log::info('After update: ', $student->fresh()->toArray());
+
+        return redirect()->route('admin.students.index')->with('success', 'Student updated successfully!');
     }
 
     /**
      * Remove the specified student from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(string $id)
     {
+
+        $student = Student::findOrFail($id);
+
+        \Log::info('Student found: ', $student->toArray());
         $student->delete();
-        return redirect()->route('admin.student.index')->with('success', 'Student deleted successfully!');
+        return redirect()->route('admin.students.index')->with('success', 'Student deleted successfully!');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\request  ;
+namespace App\Http\request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,6 +27,7 @@ class StoreStudentRequest extends FormRequest
             'Nama' => 'required|string|max:255',
             'grade_id' => 'required|exists:grades,id',
             'Email' => 'required|email|unique:students,Email',
+            'Phone' => 'required|string|unique:students,Phone',
             'Alamat' => 'nullable|string|max:500',
         ];
     }

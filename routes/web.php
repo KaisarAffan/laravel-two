@@ -15,13 +15,16 @@ Route::get('/student', [StudentController::class, 'index']);
 Route::get('/grade', [GradeController::class, 'index']);
 Route::get('/department', [DepartmentController::class, 'index']);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index']);
 
-    Route::prefix('students')->group(function () {
-        Route::get('/', [\App\Http\Controllers\admin\StudentController::class, 'index'])->name('admin.students.store');
-        Route::post('/Show', [\App\Http\Controllers\admin\StudentController::class, 'store'])->name('students.store');
+    Route::prefix('students')->name('students.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\admin\StudentController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\admin\StudentController::class, 'create'])->name('create');
+        Route::post('/Show', [\App\Http\Controllers\admin\StudentController::class, 'store'])->name('store');
+        Route::put('/update/{student}', [\App\Http\Controllers\admin\StudentController::class, 'update'])->name('update');
+        Route::delete('/delete/{student}', [\App\Http\Controllers\admin\StudentController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('grades')->group(function () {
