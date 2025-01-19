@@ -14,7 +14,7 @@
                 value="{{ request('search') }}">
         </form>
 
-        <a id="addStudentBtn" class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+        <a id="addStudentBtn" class="px-4 py-2 text-white bg-blue-500 rounded-md hover:fibg-blue-600">
             Add +
         </a>
     </div>
@@ -42,26 +42,20 @@
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">{{ $Student->Grade->Name }}</td>
                         <td class="px-6 py-4">{{ $Student->Grade->Department->Name }}</td>
                         <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">{{ $Student->Email }}</td>
-                        <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800 flex space-x-2">
+                        <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                             <button onclick="showDetailModal({{ $Student->id }},'{{ $Student->Nama }}', '{{ $Student->Grade->Name }}', '{{ $Student->Grade->Department->Name }}', '{{ $Student->Email }}', '{{$Student->Phone}}','{{ $Student->Alamat }}')"
                                 class="text-white bg-blue-500 px-6 py-3 text-lg rounded-lg hover:bg-blue-600" title="View Details">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12m0-3a3 3 0 1 1 0 6m0-6a3 3 0 1 0 0 6m-6 3m0 0a8.97 8.97 0 0 1-4-7.48M9 21a8.97 8.97 0 0 0 4-7.48" />
-                                </svg>
+                                <h1>View Details</h1>
                             </button>
                             <button
                                 onclick="showEditModal({{ $Student->id }}, '{{ $Student->Nama }}', {{ $Student->grade_id }}, '{{ $Student->Email }}','{{ $Student->Phone }}', '{{ $Student->Alamat }}')"
                                 class="text-white bg-green-500 px-6 py-3 text-lg rounded-lg hover:bg-green-700" title="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9m-9-9m4 4m-4-8l4 4m0 0-4-4" />
-                                </svg>
+                                <h1>Edit</h1>
                             </button>
                             <!-- Delete Button -->
                             <button onclick="showDeleteModal({{ $Student->id }})"
                                 class="text-white bg-red-500 px-6 py-3 text-lg rounded-lg hover:bg-red-700" title="Delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9m-9-9m4 4m-4-8" />
-                                </svg>
+                                <h3>Delete</h3>
                             </button>
                         </td>
                     </tr>
@@ -159,14 +153,19 @@
                 <dd id="detailAddress" class="text-gray-900"></dd>
             </div>
         </dl>
-        <div class="flex justify-end">
+            <div class="flex justify-between">
+            <button onclick="showEditModal({{ $Student->id }}, '{{ $Student->Nama }}', {{ $Student->grade_id }}, '{{ $Student->Email }}','{{ $Student->Phone }}', '{{ $Student->Alamat }}')"
+                class="text-white bg-green-500 px-6 py-3 text-lg rounded-lg hover:bg-green-700" title="Edit" id="editDetile">
+                <h1>Edit</h1>
+            </button>
             <button type="button" id="closeDetailModalBtn"
-            class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md mr-2">
-            Close
-        </button>
+                class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md">
+                Close
+            </button>
+        </div>
         </div>
     </div>
-</div>
+    </div>
 
     <div id="editStudentModal"
         class="fixed inset-0 z-50 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center">
@@ -242,26 +241,27 @@
         const addStudentModal = document.getElementById('addStudentModal');
         const editStudentModal = document.getElementById('editStudentModal');
         const deleteStudentModal = document.getElementById('deleteStudentModal');
+        const detailStudentModal = document.getElementById('detailStudentModal');
 
         const closeAddModalBtn=document.getElementById('closeModalBtn');
         const closeEditModalBtn = document.getElementById('closeEditModalBtn');
         const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
-        const closeModalBtn = document.getElementById('closeModalBtn');
+        const closeDetailModalBtn = document.getElementById('closeDetailModalBtn');
+        const editDetile = document.getElementById('editDetile');
 
         const editStudentForm = document.getElementById('editStudentForm');
         const deleteStudentForm = document.getElementById('deleteStudentForm');
 
-
-        const detailStudentModal = document.getElementById('detailStudentModal');
-        const closeDetailModalBtn = document.getElementById('closeDetailModalBtn');
-
-        addStudentBtn.addEventListener('click', () => {
-            addStudentModal.classList.remove('hidden');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            addStudentModal.classList.add('hidden');
-        });
+        function showDetailModal(id,name, grade, department, email, phone, address) {
+            detailStudentModal.classList.remove('hidden');
+            document.getElementById('detailId').textContent = id;
+            document.getElementById('detailName').textContent = name;
+            document.getElementById('detailGrade').textContent = grade;
+            document.getElementById('detailDepartment').textContent = department;
+            document.getElementById('detailEmail').textContent = email;
+            document.getElementById('detailPhone').textContent = phone;
+            document.getElementById('detailAddress').textContent = address;
+        }
 
         function showEditModal(id, name, gradeId, email,phone , address) {
             document.getElementById('editNama').value = name;
@@ -269,19 +269,26 @@
             document.getElementById('editEmail').value = email;
             document.getElementById('editPhone').value = phone;
             document.getElementById('editAlamat').value = address;
-            editStudentForm.action = `students/update/${id}`;
+            editStudentForm.action = `update/${id}`;
             editStudentModal.classList.remove('hidden');
         }
 
-        closeEditModalBtn.addEventListener('click', () => {
-            editStudentModal.classList.add('hidden');
-        });
+
 
         function showDeleteModal(id) {
             deleteStudentForm.action = `students/delete/${id}`;
             deleteStudentModal.classList.remove('hidden');
         }
 
+        [closeEditModalBtn, closeAddModalBtn, closeDeleteModalBtn, closeDetailModalBtn,editDetile].forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.z-50').classList.add('hidden');
+            });
+        });
+
+        addStudentBtn.addEventListener('click', () => {
+            addStudentModal.classList.remove('hidden');
+        });
 
         window.addEventListener('click', (e) => {
             if (e.target === addStudentModal) {
@@ -296,27 +303,6 @@
             if (e.target === detailStudentModal) {
                 detailStudentModal.classList.add('hidden');}
         });
-        closeDetailModalBtn.addEventListener('click', () => {
-            detailStudentModal.classList.add('hidden');
-        });
-        closeDeleteModalBtn.addEventListener('click', () => {
-            deleteStudentModal.classList.add('hidden');
-        });
-
-
-        function showDetailModal(id,name, grade, department, email, phone, address) {
-            detailStudentModal.classList.remove('hidden');
-            document.getElementById('detailId').textContent = id;
-            document.getElementById('detailName').textContent = name;
-            document.getElementById('detailGrade').textContent = grade;
-            document.getElementById('detailDepartment').textContent = department;
-            document.getElementById('detailEmail').textContent = email;
-            document.getElementById('detailPhone').textContent = phone;
-            document.getElementById('detailAddress').textContent = address;
-        }
-
-
-    </script>
 
     </script>
 </x-dashboard-layout>

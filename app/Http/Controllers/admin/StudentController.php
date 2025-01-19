@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
-use App\Http\request\StoreStudentRequest;
+use App\Http\Requests\StoreStudentRequest;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
 
@@ -28,15 +28,6 @@ class StudentController extends Controller
         $title = 'students';
 
         return view('admin.student.index', compact('title', 'students', 'grades', ));
-    }
-
-    /**
-     * Show the form for creating a new student.
-     */
-    public function create()
-    {
-        $grades = Grade::all();
-        return view('admin.student.add', compact('grades'));
     }
 
     /**

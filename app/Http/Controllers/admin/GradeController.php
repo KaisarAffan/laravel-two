@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\StoreGradeRequest;
+use App\Models\Department;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
@@ -11,11 +13,11 @@ class GradeController extends Controller
 {
     public function index()
     {
-        $grades = Grade::all();
-        return view('admin.grade.index', [
-            'title' => 'Grade',
-            'grade' => $grades->load('students', 'department')
-        ]);
+        $grades = Grade::with('students', 'department')->get();
+        $department = Department::all();
+        $title = 'Grade';
+
+        return view('admin.Grade.index', compact('title', 'grades', 'department'));
     }
     /**
      * Show the form for creating a new resource.
@@ -28,9 +30,12 @@ class GradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGradeRequest $request)
     {
-        //
+
+        Grade::create($request->validated());
+        return redirect()->route('admin.grades.index')->with('success', 'Grade added successfully!');
+
     }
 
     /**
@@ -38,7 +43,8 @@ class GradeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $grade = Grade::with('students', 'Department')->findOrFail($id);
+        return response()->json($grade);
     }
 
     /**
@@ -54,7 +60,14 @@ class GradeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $grade = Grade::findOrFail($id);
+        $validatedData = $request->validate([
+            'Name' => 'required|string|max:255',
+            'department_id' => 'required|exists:departments,id',
+        ]);
+        $grade->update($validatedData);
+
+        return redirect()->route('admin.grades.index')->with('success', 'Grade updated successfully!');
     }
 
     /**
@@ -62,6 +75,8 @@ class GradeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $grade = Grade::findOrFail($id);
+        $grade->delete();
+        return redirect()->route('admin.grades.index')->with('success', 'Grade deleted successfully!');
     }
 }

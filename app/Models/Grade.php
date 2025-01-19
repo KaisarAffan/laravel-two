@@ -10,11 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Grade extends Model
 {
+    protected $fillable = ['Name', 'department_id'];
+
     use HasFactory;
-    public function students(): HasMany
+    public function students()
     {
         return $this->hasMany(Student::class);
     }
+
+
     public function Department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
