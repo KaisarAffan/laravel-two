@@ -85,7 +85,7 @@
                         required>
                         <option value="" disabled selected>Select Grade</option>
                         @foreach ($grades as $grade)
-                            <option value="{{ $grade->id }}">{{ $grade->Name }}</option>
+                            <option value="{{ $grade->id }}">{{ $grade->Name }} -- {{ $grade->Department->Name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -185,7 +185,7 @@
                         required>
                         <option value="" disabled selected>Select Grade</option>
                         @foreach ($grades as $grade)
-                            <option value="{{ $grade->id }}">{{ $grade->Name }}</option>
+                            <option value="{{ $grade->id }}">{{ $grade->Name }} -- {{ $grade->Department->Name }}</option>
                         @endforeach
                     </select>
                 </div>
