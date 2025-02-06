@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\student;
 use App\Models\Grade;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         Department::factory(5)->create();
         Grade::factory(33)->create();
         student::factory(200)->create();
+        User::factory(200)->create();
 
 
         // User::factory()->create([
