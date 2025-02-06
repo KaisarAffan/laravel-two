@@ -23,6 +23,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [\App\Http\Controllers\admin\StudentController::class, 'index'])->name('index');
         Route::post('/Store', [\App\Http\Controllers\admin\StudentController::class, 'store'])->name('store');
         Route::put('/update/{student}', [\App\Http\Controllers\admin\StudentController::class, 'update'])->name('update');
+        Route::delete('/delete/{student}', [\App\Http\Controllers\admin\StudentController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('grades')->name('grades.')->group(function () {

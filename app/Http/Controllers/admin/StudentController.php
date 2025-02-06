@@ -23,7 +23,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $students = $this->studentService->getStudentsWithSearch($search);
+        $students = $this->studentService->getStudentsWithSearch($search)->paginate(20);
         $grades = Grade::all();
         $title = 'students';
 

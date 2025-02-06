@@ -11,8 +11,9 @@ class StudentService
                 ->orWhereHas('Grade', function ($query) use ($search) {
                     $query->where('Name', 'like', "%{$search}%");
                 });
+            ;
         }
 
-        return $query->get();
+        return $query;
     }
 }

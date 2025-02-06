@@ -62,6 +62,43 @@
                 @endforeach
             </tbody>
         </table>
+        <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                Showing
+                <span class="font-semibold text-gray-900 dark:text-white">{{ $students->firstItem() }}-{{ $students->lastItem() }}</span>
+                of
+                <span class="font-semibold text-gray-900 dark:text-white">{{ $students->total() }}</span>
+            </span>
+            <ul class="inline-flex items-stretch -space-x-px">
+                @if ($students->onFirstPage())
+                    <li>
+                        <span class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300">1</span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $students->url(1) }}" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100">1</a>
+                    </li>
+                @endif
+
+                @foreach ($students->getUrlRange(2, $students->lastPage() - 1) as $page => $url)
+                    <li>
+                        <a href="{{ $url }}" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 {{ $page == $students->currentPage() ? 'bg-blue-500 text-black' : '' }}">
+                            {{ $page }}
+                        </a>
+                    </li>
+                @endforeach
+
+                @if ($students->hasMorePages())
+                    <li>
+                        <a href="{{ $students->url($students->lastPage()) }}" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100">{{ $students->lastPage() }}</a>
+                    </li>
+                @else
+                    <li>
+                        <span class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300">{{ $students->lastPage() }}</span>
+                    </li>
+                @endif
+            </ul>
+        </nav>
     </div>
 
     {{-- Add Modal --}}
